@@ -1,0 +1,251 @@
+:root {
+  --cases-max-width: 1152px;
+  --cases-margin-top: 8vh;
+
+  --cases-title-size: 30px;
+  --cases-body-size: 11px;
+  --cases-subheading-size: 19px;
+  --cases-meta-size: 11px;
+  --cases-toggle-size: 14px;
+
+  --cases-arrow-offset-left: -52px;
+  --cases-arrow-offset-right: -52px;
+}
+
+.cases-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: relative;
+  z-index: 2;
+}
+
+.cases-slider {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: var(--cases-max-width);
+  margin-top: var(--cases-margin-top);
+  padding-bottom: 10vh;
+}
+
+.cases-header {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.cases-title {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  font-size: var(--cases-title-size);
+  line-height: 1.08;
+  font-weight: 200;
+  letter-spacing: 0;
+  color: #fff;
+  max-width: 1000px;
+}
+
+.cases-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.72);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease;
+}
+
+.cases-arrow:hover {
+  color: #fff;
+}
+
+.cases-arrow--prev {
+  left: var(--cases-arrow-offset-left);
+}
+
+.cases-arrow--next {
+  right: var(--cases-arrow-offset-right);
+}
+
+.cases-meta-info {
+  margin-bottom: 20px;
+}
+
+.cases-meta-info p {
+  margin: 0 0 1px 0;
+  font-family: 'Inter', sans-serif;
+  font-size: var(--cases-meta-size);
+  line-height: 1.3;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.cases-text-area {
+  width: 100%;
+  max-width: var(--cases-max-width);
+}
+
+.cases-meta-label {
+  font-weight: 300;
+}
+
+.cases-meta-value {
+  font-weight: 200;
+}
+
+.cases-block {
+  margin-bottom: 20px;
+  max-width: var(--cases-max-width);
+}
+
+.cases-block h2 {
+  margin: 0 0 5px 0;
+  font-family: 'Inter', sans-serif;
+  font-size: var(--cases-subheading-size);
+  line-height: 1.2;
+  font-weight: 300;
+  letter-spacing: 0;
+  color: #fff;
+  text-transform: none;
+}
+
+.cases-block p {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  font-size: var(--cases-body-size);
+  line-height: 1.45;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.88);
+  text-align: left;
+}
+
+.cases-toggle-btn {
+  margin-top: 8px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  font-family: 'Inter', sans-serif;
+  font-size: var(--cases-toggle-size);
+  line-height: 1.3;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.42);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.2s ease;
+}
+
+.cases-toggle-btn:hover {
+  color: #fff;
+}
+
+.cases-toggle-icon {
+  transition: transform 0.3s ease;
+}
+
+.cases-toggle-icon.is-open {
+  transform: rotate(180deg);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --cases-max-width: 100%;
+    --cases-margin-top: 64px;
+    --cases-title-size: 24px;
+    --cases-body-size: 11px;
+    --cases-subheading-size: 9px;
+    --cases-meta-size: 11px;
+  }
+
+  .cases-header {
+    padding: 0 40px;
+  }
+
+  .cases-arrow--prev {
+    left: 0;
+  }
+
+  .cases-arrow--next {
+    right: 0;
+  }
+
+  .cases-title {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --cases-margin-top: 40px;
+    --cases-title-size: 22px;
+    --cases-body-size: 11px;
+    --cases-subheading-size: 19px;
+    --cases-meta-size: 11px;
+    --cases-toggle-size: 14px;
+  }
+
+  .cases-header {
+    display: grid;
+    grid-template-columns: 24px 1fr 24px;
+    align-items: center;
+    gap: 12px;
+    padding: 0;
+    margin-bottom: 14px;
+  }
+
+  .cases-arrow {
+    position: static;
+    transform: none;
+    width: 24px;
+    height: 24px;
+  }
+
+  .cases-title {
+    line-height: 1.15;
+  }
+
+  .cases-meta-info {
+    margin-bottom: 20px;
+}
+
+  .cases-block {
+    margin-bottom: 18px;
+  }
+
+  .cases-block h2 {
+    font-size: var(--cases-subheading-size);
+    margin-bottom: 5px;
+  }
+
+  .cases-block p {
+    font-size: var(--cases-body-size);
+    line-height: 1.45;
+  }
+
+  .cases-toggle-btn {
+    font-size: var(--cases-toggle-size);
+    line-height: 1.3;
+  }
+}

@@ -1,61 +1,60 @@
-import './App.css'
+import { BrowserRouter, Routes, Route, useLocation, Link } from 'react-router-dom'
+import Home from "./pages/Home";
+import Cases from "./pages/Cases";
 import treeImage from './assets/tree.svg'
+import './App.css'
+
+function Header() {
+  const location = useLocation();
+
+  return (
+    <header className="global-header">
+      <div className="global-meta">
+        <p className="meta-name">Черемушкина Камилла</p>
+        <p className="meta-role">Junior UX-researcher</p>
+        <a href="https://t.me/kindaoblomov" target="_blank" rel="noreferrer">tg: @kindaoblomov</a>
+        <a href="/resume_ru.pdf" target="_blank" rel="noreferrer">Резюме</a>
+      </div>
+
+      <nav className="global-nav">
+        <Link to="/" className={location.pathname === '/' ? 'is-active' : ''}>Обо мне</Link>
+        <Link to="/cases" className={location.pathname === '/cases' ? 'is-active' : ''}>Кейсы</Link>
+        <a href="/#research">Исследования</a>
+        <a href="/#creative">Творческое портфолио</a>
+      </nav>
+    </header>
+  )
+}
+
+function AppLayout() {
+  const location = useLocation()
+
+  const pageClass =
+    location.pathname === '/cases'
+      ? 'page-wrapper page-wrapper--cases'
+      : 'page-wrapper page-wrapper--home'
+
+  return (
+    <main className={pageClass}>
+      <Header />
+
+      <div className="global-tree-layer">
+        <img src={treeImage} alt="Дерево" className="global-tree" />
+      </div>
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/cases" element={<Cases />} />
+      </Routes>
+    </main>
+  )
+}
 
 function App() {
   return (
-    <main className="page">
-      <section className="hero" id="about">
-        <div className="hero__content">
-          <div className="hero__top">
-            <div className="hero__meta">
-              <p className="meta-name">Черемушкина Камилла</p>
-              <p className="meta-role">Junior UX-researcher</p>
-
-              <a
-                href="https://t.me/kindaoblomov"
-                target="_blank"
-                rel="noreferrer"
-              >
-                tg: @kindaoblomov
-              </a>
-
-              <a
-                href="/resume_ru.pdf"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Резюме
-              </a>
-            </div>
-
-            <nav className="hero__nav">
-              <a href="#about" className="is-active">Обо мне</a>
-              <a href="#cases">Кейсы</a>
-              <a href="#research">Исследования</a>
-              <a href="#creative">Творческое портфолио</a>
-            </nav>
-          </div>
-
-          <div className="hero__text">
-            <h1>я   —  камилла черемушкина</h1>
-            <p className="hero__description">
-              исследую, как люди воспринимают интерфейсы,
-              принимают решения и действуют в условиях
-              неопределенности
-            </p>
-          </div>
-        </div>
-
-        {/* Визуальная часть (фон) */}
-        <div className="hero__visual">
-          <img
-            src={treeImage}
-            alt="Исследовательское дерево"
-            className="hero__tree"
-          />
-        </div>
-      </section>
-    </main>
+    <BrowserRouter>
+      <AppLayout />
+    </BrowserRouter>
   )
 }
 
