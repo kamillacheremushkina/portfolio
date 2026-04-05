@@ -1,0 +1,188 @@
+/* Базовые настройки */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #000;
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.page {
+  background: #000;
+  color: #fff;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden; 
+}
+
+/* =========================================
+   ПУЛЬТ УПРАВЛЕНИЯ КОМПОЗИЦИЕЙ
+   ========================================= */
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  width: 100vw;
+  box-sizing: border-box;
+
+  /* 1. ОТСТУПЫ (ВОЗДУХ) ПО КРАЯМ ЭКРАНА */
+  /* Первое число - отступ сверху/снизу, второе - слева/справа.
+     Увеличьте 8vw до 10vw, если нужно сдвинуть текст еще правее от левого края */
+  padding: 5vh 12vw; 
+}
+
+/* --- КОНТЕНТ (ЛЕВАЯ ЧАСТЬ) --- */
+.hero__content {
+  position: relative;
+  z-index: 2;
+  height: 80vh; /* Занимаемая высота текста. Оставляем место для отступов */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 1000px;
+}
+
+/* Шапка (Верхнее меню) */
+.hero__top {
+  display: grid;
+  /* 2. ШИРИНА КОЛОНОК ВЕРХНЕГО МЕНЮ */
+  /* Уменьшите 220px, если слова слишком далеко друг от друга */
+  grid-template-columns: 210px 210px; 
+  align-items: start;
+}
+
+.hero__meta,
+.hero__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.hero__meta p,
+.hero__meta a,
+.hero__nav a {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.3;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.3);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.hero__meta p.meta-name,
+.hero__meta p.meta-role {
+  color: #ffffff;
+}
+
+.hero__meta p.meta-name {
+  margin-bottom: 4px;
+}
+
+.hero__meta a:hover,
+.hero__nav a:hover {
+  color: #ffffff;
+}
+
+.hero__meta p.meta-name {
+  color: #ffffff;
+  margin-bottom: 4px;
+}
+
+.hero__nav a.is-active {
+  color: #ffffff;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+
+.hero__meta a:hover,
+.hero__nav a:hover {
+  color: #ffffff;
+}
+
+/* Текст снизу */
+.hero__text {
+  padding-bottom: 2vh;
+}
+
+.hero__text h1 {
+  margin: 0 0 24px 0;
+  
+  /* 3. РАЗМЕР ГЛАВНОГО ЗАГОЛОВКА */
+  /* Меняйте это значение (было огромным, сейчас компактное) */
+  font-size: 45px; 
+  max-width: 280px;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  font-weight: 200;
+  text-align: justify;
+}
+
+.hero__description {
+  margin: 0;
+  max-width: 280px; /* Ширина абзаца под заголовком */
+  font-size: 13px;
+  line-height: 1.5;
+  font-weight: 300;
+  color: rgba(255, 255, 255);
+  text-align: justify;
+}
+
+/* --- ВИЗУАЛЬНАЯ ЧАСТЬ (ПРАВАЯ ЧАСТЬ, ДЕРЕВО) --- */
+.hero__visual {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50vw; /* Зона, выделенная под дерево (половина экрана) */
+  height: 100vh;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero__tree {
+  position: absolute;
+  
+  /* 4. РАЗМЕР ДЕРЕВА */
+  /* vh - это процент от высоты экрана. 
+     80vh значит, что дерево будет занимать 80% высоты экрана (будет меньше).
+     Если нужно больше - ставьте 90vh или 100vh */
+  height: 90vh; 
+  
+  /* Это центрирует дерево строго по вертикали экрана */
+  top: 47%;
+  transform: translateY(-50%);
+  
+  /* 5. ПОЗИЦИЯ ДЕРЕВА ВПРАВО-ВЛЕВО */
+  /* 0 означает, что оно прижато к правому краю. 
+     Если нужно сдвинуть левее (ближе к тексту), напишите right: 5vw;
+     Если нужно задвинуть за край экрана, напишите right: -5vw; */
+  right: 13vw; 
+  
+  width: auto;
+  max-width: none;
+  object-fit: contain;
+}
+
+/* --- ПРОСТАЯ АДАПТИВНОСТЬ ДЛЯ ТЕЛЕФОНОВ --- */
+@media (max-width: 768px) {
+  .hero {
+    padding: 32px 24px;
+  }
+  .page { overflow-y: auto; }
+  .hero__content {
+    height: auto;
+    gap: 120px;
+  }
+  .hero__top {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .hero__text h1 { font-size: 42px; }
+  .hero__tree {
+    height: 60vh;
+    right: -10vw;
+    opacity: 0.3; /* Затемняем, чтобы текст читался */
+  }
+}
