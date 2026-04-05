@@ -20,7 +20,7 @@ function App() {
               </a>
 
               <a
-                href="/public/resume_ru.pdf"
+                href="/resume_ru.pdf"
                 target="_blank"
                 rel="noreferrer"
               >
